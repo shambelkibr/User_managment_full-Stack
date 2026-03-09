@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const navLinkBase =
-  "rounded-lg px-4 py-2 text-sm font-semibold transition-colors duration-200";
+  "rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200";
 
 const Navbar = () => {
   const location = useLocation();
@@ -10,21 +10,25 @@ const Navbar = () => {
     const isActive = location.pathname === path;
     return `${navLinkBase} ${
       isActive
-        ? "bg-emerald-600 text-white"
-        : "text-slate-700 hover:bg-emerald-100 hover:text-emerald-800"
+        ? "bg-teal-700 text-white shadow-sm"
+        : "text-slate-700 hover:bg-teal-100 hover:text-teal-800"
     }`;
   };
 
   return (
-    <header className="border-b border-slate-200 bg-white/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <h1 className="text-xl font-bold text-slate-900">User Management</h1>
-        <div className="flex items-center gap-2">
+    <header className="sticky top-0 z-20 border-b border-white/40 bg-white/65 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Team Console</h1>
+          <p className="text-xs text-slate-500">User management dashboard</p>
+        </div>
+
+        <div className="flex items-center gap-2 rounded-full bg-white p-1 shadow-sm ring-1 ring-slate-200/80">
           <Link to="/" className={getLinkClass("/")}>
-            Home
+            Dashboard
           </Link>
           <Link to="/add-user" className={getLinkClass("/add-user")}>
-            Add User
+            Create
           </Link>
         </div>
       </nav>

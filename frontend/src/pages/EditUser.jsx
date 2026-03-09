@@ -69,7 +69,7 @@ const EditUser = () => {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-2xl px-6 py-8">
+      <section className="mx-auto max-w-4xl px-4 py-7 sm:px-6 sm:py-10">
         <p className="rounded-lg bg-white p-4 text-slate-600">
           Loading user...
         </p>
@@ -78,60 +78,72 @@ const EditUser = () => {
   }
 
   return (
-    <section className="mx-auto max-w-2xl px-6 py-8">
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-6 text-2xl font-bold text-slate-900">
-          Edit User #{user_id}
-        </h2>
-
-        {error && (
-          <p className="mb-4 rounded-lg border border-rose-200 bg-rose-50 p-3 text-rose-700">
-            {error}
+    <section className="mx-auto max-w-4xl px-4 py-7 sm:px-6 sm:py-10">
+      <div className="fade-in-up grid overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 shadow-[0_18px_50px_-26px_rgba(15,23,42,0.35)] lg:grid-cols-[1.1fr_1fr]">
+        <div className="bg-gradient-to-br from-sky-700 to-indigo-700 p-7 text-white">
+          <p className="text-xs uppercase tracking-[0.22em] text-sky-100">User Update</p>
+          <h2 className="mt-2 text-3xl font-bold">Edit User #{user_id}</h2>
+          <p className="mt-3 text-sm text-sky-50/90">
+            Update profile information and keep your team records accurate.
           </p>
-        )}
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-emerald-500 focus:ring"
-            required
-          />
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-emerald-500 focus:ring"
-            required
-          />
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-emerald-500 focus:ring"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-emerald-500 focus:ring"
-            required
-          />
+        <div className="p-6">
+          <h3 className="mb-6 text-xl font-bold text-slate-900">Profile Details</h3>
 
-          <button
-            type="submit"
-            disabled={saving}
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
-          >
-            {saving ? "Updating..." : "Update User"}
-          </button>
-        </form>
+          {error && (
+            <p className="mb-4 rounded-lg border border-rose-200 bg-rose-50 p-3 text-rose-700">
+              {error}
+            </p>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <input
+                type="text"
+                name="first_name"
+                value={formData.first_name}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none ring-sky-500 focus:ring"
+                required
+              />
+              <input
+                type="text"
+                name="last_name"
+                value={formData.last_name}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none ring-sky-500 focus:ring"
+                required
+              />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <input
+                type="number"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none ring-sky-500 focus:ring"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-slate-300 px-3 py-2.5 outline-none ring-sky-500 focus:ring"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={saving}
+              className="w-full rounded-xl bg-sky-700 px-4 py-2.5 font-semibold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {saving ? "Updating..." : "Update User"}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
