@@ -1,33 +1,23 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import AddUser from "./pages/AddUser";
+import EditUser from "./pages/EditUser";
 
-function App() {
-
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/users")
-      .then(res => {
-        setUsers(res.data)
-      })
-  }, [])
-
+const App = () => {
   return (
-    <div>
-      <h1>User List</h1>
+    <BrowserRouter>
+      <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-user" element={<AddUser />} />
+          <Route path="/edit-user/:user_id" element={<EditUser />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
+  );
+};
 
-      {users.map((user) => (
-        <div key={user.user_id}>
-          <p>ID: {user.user_id}</p>
-          <p>Name: {user.first_name} {user.last_name}</p>
-          <p>Age: {user.age}</p>
-          <p>Email: {user.email}</p>
-          <hr />
-        </div>
-      ))}
-
-    </div>
-  )
-}
-
-export default App
+export default App;
